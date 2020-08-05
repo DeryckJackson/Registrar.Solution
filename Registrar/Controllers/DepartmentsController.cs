@@ -22,11 +22,12 @@ namespace Registrar.Controllers
       return View(_db.Departments.ToList());
     }
 
-    public ActionResult Details (int deptId)
+    public ActionResult Details (int id)
     {
-      ViewBag.Students = _db.Students.Where(student => student.DepartmentId == deptId).ToList();
-      ViewBag.Courses = _db.Courses.Where(course => course.DepartmentId == deptId).ToList();
-      return View();
+      var model = _db.Departments.FirstOrDefault(department => department.DepartmentId == id);
+      ViewBag.Students = _db.Students.Where(student => student.DepartmentId == id).ToList();
+      ViewBag.Courses = _db.Courses.Where(course => course.DepartmentId == id).ToList();
+      return View(model);
     }
 
     public ActionResult Create()
