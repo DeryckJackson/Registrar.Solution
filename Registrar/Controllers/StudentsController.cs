@@ -65,10 +65,6 @@ namespace Registrar.Controllers
     public ActionResult Create(Student student, int DepartmentId)
     {
       _db.Students.Add(student);
-      if (DepartmentId !=0)
-      {
-        _db.DepartmentStudent.Add(new DepartmentStudent() { DepartmentId = DepartmentId, StudentId = student.StudentId });
-      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

@@ -21,11 +21,12 @@ namespace Registrar.Controllers
     }
     public ActionResult Create()
     {
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
       return View();
     }
     [HttpPost]
-    public ActionResult Create(Course course, int StudentId)
+    public ActionResult Create(Course course, int StudentId, int DepartmentId)
     {
       _db.Courses.Add(course);
       if (StudentId != 0)

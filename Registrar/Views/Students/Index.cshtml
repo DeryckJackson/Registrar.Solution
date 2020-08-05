@@ -46,7 +46,7 @@ else
         @student.StudentId
       </td>
       <td>
-        @* @student.Department.Name *@
+        @student.Department.Name
       </td>
       <td>
         @student.EnrollmentDate
@@ -57,6 +57,5 @@ else
 }
 
 <p>@Html.ActionLink("Add new student", "Create")</p>
-<button>@Html.ActionLink("Create a new dept", "Create", "Departments")</button>
 <button>@Html.ActionLink("Home", "Index", "Home")</button>
 <p>@Html.ActionLink("Add a Department", "Create", "Departments")</p>

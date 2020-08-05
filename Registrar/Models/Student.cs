@@ -13,6 +13,8 @@ namespace Registrar.Models
     public string StudentName { get; set; }
     public string StudentSocialScore { get; set; }
     public DateTime EnrollmentDate { get; set; }
+    public int DepartmentId { get; set; }
+
     public virtual Department Department { get; set; }
     public ICollection<CourseStudent> Courses { get; set; }
   }

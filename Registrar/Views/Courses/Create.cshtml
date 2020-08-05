@@ -17,6 +17,9 @@
   @Html.LabelFor(model => model.Description) <br>
   @Html.TextBoxFor(model => model.Description) <br><br>
 
+  @Html.Label("Select Department")
+  @Html.DropDownList("DepartmentId")
+
   @Html.Label("Select Student")
   @Html.DropDownList("StudentId")
 
