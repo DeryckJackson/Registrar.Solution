@@ -10,9 +10,9 @@ namespace Registrar.Models
       this.Courses = new HashSet<CourseDepartment>();
     }
 
+    public int DepartmentId { get; set; }
     public string Name { get; set; }
     public string Building { get; set; }
-    public int DeparmentId { get; set; }
     
     public ICollection<DepartmentStudent> Students { get; set; }
     public ICollection<CourseDepartment> Courses { get; set; }
