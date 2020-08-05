@@ -17,11 +17,11 @@
 * in command line use the command 'git clone (GitHub url)'
 * open the program in a code editor
 * in MySql Workbench select _Data Import/Restore_ from the Administration tab
-* in import options select _Import from Self-Contained File_, and navigate to megan_hepner.sql in the root directory of this project
-* The following is the code snippet from the megan_hepner.sql file <br>
+* in import options select _Import from Self-Contained File_, and navigate to registrar.sql in the root directory of this project
+* The following is the code snippet from the registrar.sql file <br>
 
-CREATE DATABASE  IF NOT EXISTS `megan_hepner`;
-USE `megan_hepner`;
+CREATE DATABASE  IF NOT EXISTS `registrar`;
+USE `registrar`;
 
 DROP TABLE IF EXISTS `clients`;
 CREATE TABLE `clients` (
@@ -56,6 +56,8 @@ __
 | Student => Course reflect many to many relationship | none | none |
 
 
+Departments, Departments => students, Department => course
+
 ## Known Bugs
 
 _No known bugs_
@@ -65,6 +67,8 @@ _No known bugs_
 * Christine Augustine
 * Megan Hepner
 * Sean Downs
+* Kate Skorija
+* Deryck Jackson
 
 ## Support and contact details
 

@@ -20,7 +20,7 @@ namespace Registrar.Controllers
     public ActionResult Index(string sortOrder, string searchString)
     {
       ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder)? "name_desc" : "";
-      ViewBag.DateSortParm = sortOrder=="Date" ? "date_desc" : "Date";
+      ViewBag.DateSortParm = sortOrder =="Date" ? "date_desc" : "Date";
       var students = from student in _db.Students
                     select student;
       if (!String.IsNullOrEmpty(searchString))

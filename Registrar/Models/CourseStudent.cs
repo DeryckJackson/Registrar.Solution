@@ -9,3 +9,15 @@ namespace Registrar.Models
     public Course Course { get; set; }
   }
 }
+
+// StudentId - CourseId
+// Student - Course
+
+// CourseId - DepartmentId
+// Course - Department
+
+// StudentId - DepartmentId
+// Student - Department
+
+// StudentId - CompletedCourseId
+// Student - Course
