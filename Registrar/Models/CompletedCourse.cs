@@ -1,8 +1,8 @@
 namespace Registrar.Models
 {
-  public class CourseStudent
+  public class CompletedCourse
   {
-    public int CourseStudentId { get; set; }
+    public int CompletedCourseId { get; set; }
     public int StudentId { get; set; }
     public int CourseId { get; set; }
     public Student Student { get; set; }

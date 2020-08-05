@@ -75,13 +75,14 @@ namespace Registrar.Controllers
       .Include(student => student.Courses)
       .ThenInclude(join => join.Course)
       .FirstOrDefault(student => student.StudentId == id);
+      ViewBag.Completed = _db.CompletedCourses.Where(completedCourse => course.StudentId == id)
       return View(thisStudent);
     }
 
     public ActionResult Edit(int id)
     {
       var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
-      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.Course = new SelectList(_db.Courses, "CourseId", "Name");
       ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View(thisStudent);
     }
