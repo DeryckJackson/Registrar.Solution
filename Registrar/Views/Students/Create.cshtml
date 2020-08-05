@@ -14,6 +14,9 @@
   @Html.Label("StudentSocialScore", "Student Social Score")<br>
   @Html.TextBoxFor(model => model.StudentSocialScore)<br>
 
+  @Html.Label("Select Department")
+  @Html.DropDownList("DepartmentId")
+
   @Html.Label("EnrollmentDate", "Enrollment Date")<br>
   @Html.TextBoxFor(model => model.EnrollmentDate, new { @type = "date"})<br>
 

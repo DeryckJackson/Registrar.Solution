@@ -57,13 +57,18 @@ namespace Registrar.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Student student)
+    public ActionResult Create(Student student, int DepartmentId)
     {
       _db.Students.Add(student);
+      if (DepartmentId !=0)
+      {
+        _db.DepartmentStudent.Add(new DepartmentStudent() { DepartmentId = DepartmentId, StudentId = student.StudentId });
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -81,6 +86,7 @@ namespace Registrar.Controllers
     {
       var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
       ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View(thisStudent);
     }
 
