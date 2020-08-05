@@ -22,8 +22,11 @@ namespace Registrar.Controllers
       ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder)? "name_desc" : "";
       ViewBag.DateSortParm = sortOrder =="Date" ? "date_desc" : "Date";
       ViewBag.DepartmentSortParm = sortOrder == "Department" ? "department_desc" : "Department";
-      var students = from student in _db.Students
-                    select student;
+      // var students = from student in _db.Students select student;
+      IQueryable<Student> students = _db.Students
+        .Include(student => student.Courses)
+        .ThenInclude(join => join.Course)
+        .Include(student => student.Department);
       if (!String.IsNullOrEmpty(searchString))
       {
           students = students.Where(student => student.StudentName.Contains(searchString));
