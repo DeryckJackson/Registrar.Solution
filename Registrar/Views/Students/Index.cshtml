@@ -28,6 +28,9 @@ else
         <th>Student Id
         </th>
         <th>
+            @Html.ActionLink("Department", "Index", new { sortOrder = ViewBag.DepartmentSortParm })
+        </th>
+        <th>
             @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th></th>
@@ -41,6 +44,9 @@ else
       </td>
       <td>
         @student.StudentId
+      </td>
+      <td>
+        @student.Department.Name
       </td>
       <td>
         @student.EnrollmentDate

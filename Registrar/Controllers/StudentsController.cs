@@ -21,6 +21,7 @@ namespace Registrar.Controllers
     {
       ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder)? "name_desc" : "";
       ViewBag.DateSortParm = sortOrder =="Date" ? "date_desc" : "Date";
+      ViewBag.DepartmentSortParm = sortOrder == "Department" ? "department_desc" : "Department";
       var students = from student in _db.Students
                     select student;
       if (!String.IsNullOrEmpty(searchString))
@@ -37,6 +38,12 @@ namespace Registrar.Controllers
           break;
         case "date_desc":
           students = students.OrderByDescending(student => student.EnrollmentDate);
+          break;
+        case "Department":
+          students = students.OrderBy(student => student.Department.Name);
+          break;
+        case "department_desc":
+          students = students.OrderByDescending(student => student.Department.Name);
           break;
         default:
           students = students.OrderBy(student => student.StudentName);
