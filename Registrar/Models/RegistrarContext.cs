@@ -8,6 +8,7 @@ namespace Registrar.Models
     public DbSet<Course> Courses { get; set; }
     public DbSet<Department> Departments { get; set; }
     public DbSet<CourseStudent> CourseStudent { get; set;}
+    public DbSet<CompletedCourse> CompletedCourse { get; set; }
     public RegistrarContext(DbContextOptions options) : base(options) { }
   }
 }

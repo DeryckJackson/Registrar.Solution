@@ -122,5 +122,15 @@ namespace Registrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    [HttpPost]
+    public ActionResult CompleteCourse(int joinId, int studentId, int courseId)
+    {
+      var joinEntry = _db.CourseStudent.FirstOrDefault(entry => entry.CourseStudentId == joinId);
+      _db.CourseStudent.Remove(joinEntry);
+      _db.CompletedCourse.Add(new CompletedCourse() { CourseId = courseId, StudentId = studentId });
+      _db.SaveChanges();
+      return RedirectToAction("Details", studentId);
+    }
   }
 }
