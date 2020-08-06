@@ -16,15 +16,34 @@
 }
 else
 {
-  <h2>Students currently enrolled:</h2>
+  <h2>Current Student Enrollment:</h2>
   <ul>
   @foreach(var join in Model.Students)
   { 
-    <li>@join.Student.StudentName</li>
-    @using (Html.BeginForm("DeleteStudent", "Courses"))
+    if(join.IsComplete == false)
     {
-      @Html.Hidden("joinId", @join.CourseStudentId)
-      <input type="submit" value="Delete"/>
+      <li>@join.Student.StudentName</li>
+      @using (Html.BeginForm("DeleteStudent", "Courses"))
+      {
+        @Html.Hidden("joinId", @join.CourseStudentId)
+        <input type="submit" value="Delete"/>
+      }
+    }
+  }
+</ul>
+
+<h2>Course Completed By:</h2>
+<ul>
+  @foreach(var join in Model.Students)
+  { 
+    if(join.IsComplete == true)
+    {
+      <li>@join.Student.StudentName</li>
+      @using (Html.BeginForm("DeleteStudent", "Courses"))
+      {
+        @Html.Hidden("joinId", @join.CourseStudentId)
+        <input type="submit" value="Delete"/>
+      }
     }
   }
 </ul>
