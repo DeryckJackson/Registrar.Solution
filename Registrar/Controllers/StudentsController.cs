@@ -75,7 +75,7 @@ namespace Registrar.Controllers
       .Include(student => student.Courses)
       .ThenInclude(join => join.Course)
       .FirstOrDefault(student => student.StudentId == id);
-      ViewBag.Completed = _db.CompletedCourses.Where(completedCourse => course.StudentId == id)
+      //ViewBag.Completed = _db.CompletedCourses.Where(completedCourse => course.StudentId == id)
       return View(thisStudent);
     }
 

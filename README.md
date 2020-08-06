@@ -16,33 +16,12 @@
 * to clone this content, copy the url provided by the 'clone or download' button in GitHub
 * in command line use the command 'git clone (GitHub url)'
 * open the program in a code editor
-* in MySql Workbench select _Data Import/Restore_ from the Administration tab
-* in import options select _Import from Self-Contained File_, and navigate to registrar.sql in the root directory of this project
-* The following is the code snippet from the registrar.sql file <br>
-
-CREATE DATABASE  IF NOT EXISTS `registrar`;
-USE `registrar`;
-
-DROP TABLE IF EXISTS `clients`;
-CREATE TABLE `clients` (
-  `ClientId` int NOT NULL AUTO_INCREMENT,
-  `ClientPhone` int DEFAULT NULL,
-  `StylistId` int DEFAULT '0',
-  `Name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ClientId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-DROP TABLE IF EXISTS `stylists`;
-CREATE TABLE `stylists` (
-  `StylistId` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) DEFAULT NULL,
-  `Details` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`StylistId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-* click _Start Import_
-* in your code editor create a .gitignore file and store the bin and obj folders in .gitignore
-* navigate to the HairSalon directory and type dotnet build in the command line to compile the code
-* type dotnet run in the command line to run the program
+* In the project folder (Registrar) enter the following terminal commands:
+  1. dotnet restore
+  2. dotnet ef database update
+* To launch the program run the following:
+  1. dotnet run
+* Open http://localhost:5000/ in your web browser to access the application
 __
 
 ## Specs
@@ -54,9 +33,6 @@ __
 | Program can create a Course object | none | none |
 | Course object holds course name and number | none | none |
 | Student => Course reflect many to many relationship | none | none |
-
-
-Departments, Departments => students, Department => course
 
 ## Known Bugs
 
