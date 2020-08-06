@@ -75,7 +75,6 @@ namespace Registrar.Controllers
       .Include(student => student.Courses)
       .ThenInclude(join => join.Course)
       .FirstOrDefault(student => student.StudentId == id);
-      //ViewBag.Completed = _db.CompletedCourses.Where(completedCourse => course.StudentId == id)
       return View(thisStudent);
     }
 
@@ -124,13 +123,15 @@ namespace Registrar.Controllers
     }
 
     [HttpPost]
-    public ActionResult CompleteCourse(int joinId, int studentId, int courseId)
+    public ActionResult CompleteCourse(int joinId)
     {
       var joinEntry = _db.CourseStudent.FirstOrDefault(entry => entry.CourseStudentId == joinId);
       _db.CourseStudent.Remove(joinEntry);
-      _db.CompletedCourse.Add(new CompletedCourse() { CourseId = courseId, StudentId = studentId });
+      joinEntry.IsComplete = true;
+      _db.Add(joinEntry);
+      _db.Entry(joinEntry).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Details", studentId);
+      return RedirectToAction("Index");
     }
   }
 }

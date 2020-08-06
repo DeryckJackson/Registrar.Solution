@@ -20,18 +20,43 @@
 else
 {
   <ul>
+    <h3>Current Courses:</h3>
+    <hr/>
     @foreach(var join in Model.Courses)
     {
-      <li>@join.Course.Name</li>
-      @using (Html.BeginForm("DeleteCourse", "Students"))
+      if(join.IsComplete == false)
       {
-        @Html.Hidden("joinId", @join.CourseStudentId)
-        <input type="submit" value="Delete"/>
+        <li>@join.Course.Name</li>
+        @using (Html.BeginForm("DeleteCourse", "Students"))
+        {
+          @Html.Hidden("joinId", @join.CourseStudentId)
+          <input type="submit" value="Delete"/>
+        }
+        @using (Html.BeginForm("CompleteCourse", "Students"))
+        {
+          @Html.Hidden("joinId", @join.CourseStudentId)
+          <input type="submit" value="Mark As Completed"/>
+        }
+      }
+    }
+    <hr/>
+    <h3>Completed Courses:</h3>
+
+    @foreach(var join in Model.Courses)
+    {
+      if(join.IsComplete == true)
+      {
+        <li>@join.Course.Name</li>
+        @using (Html.BeginForm("DeleteCourse", "Students"))
+        {
+          @Html.Hidden("joinId", @join.CourseStudentId)
+          <input type="submit" value="Delete"/>
+        }
       }
     }
   </ul>
-}
-<p>@Html.ActionLink("Edit", "Edit", new { id = @Model.StudentId })</p>
+  }
+  <p>@Html.ActionLink("Edit", "Edit", new { id = @Model.StudentId })</p>
 <p>@Html.ActionLink("Back to Students", "Index")</p>
 <p>@Html.ActionLink("All Courses", "Index", "Courses")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

@@ -2,20 +2,40 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Registrar.Models;
 
 namespace Registrar.Migrations
 {
     [DbContext(typeof(RegistrarContext))]
-    partial class RegistrarContextModelSnapshot : ModelSnapshot
+    [Migration("20200806165343_CompletedCourses")]
+    partial class CompletedCourses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("Registrar.Models.CompletedCourse", b =>
+                {
+                    b.Property<int>("CompletedCourseId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CourseId");
+
+                    b.Property<int>("StudentId");
+
+                    b.HasKey("CompletedCourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("CompletedCourse");
+                });
 
             modelBuilder.Entity("Registrar.Models.Course", b =>
                 {
@@ -43,8 +63,6 @@ namespace Registrar.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CourseId");
-
-                    b.Property<bool>("IsComplete");
 
                     b.Property<int>("StudentId");
 
@@ -89,6 +107,19 @@ namespace Registrar.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Registrar.Models.CompletedCourse", b =>
+                {
+                    b.HasOne("Registrar.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Registrar.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Registrar.Models.Course", b =>
